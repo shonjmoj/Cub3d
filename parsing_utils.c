@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/10/29 13:55:26 by elounejj         ###   ########.fr       */
+/*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
+/*   Updated: 2022/10/29 13:56:42 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "Libft/libft.h"
-
-# define BUFFER_SIZE 1000
-
-char	*get_next_line(int fd);
-int		check_map_ext(char *filname);
-int		valid_side(char *line);
-void	print_error(const char *error);
-char	*ft_free(char **adr_str);
-
-#endif
+int	valid_side(char *line)
+{
+	if (line[0] == 'N' && line[1] == 'O' && line[3] == ' ')
+		return (1);
+	else if (line[0] == 'S' && line[1] == 'O' && line[3] == ' ')
+		return (1);
+	else if (line[0] == 'W' && line[1] == 'E' && line[3] == ' ')
+		return (1);
+	else if (line[0] == 'E' && line[1] == 'A' && line[3] == ' ')
+		return (1);
+	return (0);
+}
