@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/10/29 13:53:15 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:11:23 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ char	*get_ext(char *filename)
 int	check_map_ext(char *filname)
 {
 	char	*ext;
-	char	*tmp;
-
-	tmp = ft_substr(filname, ft_strlen(filname) - 4, 4);
-	if (ft_strnstr(filname, ".cub", ft_strlen(filname)) == NULL)
+	int		len;
+	
+	len = ft_strlen(filname);
+	if (ft_strnstr(filname, ".cub", ft_strlen(filname)) == NULL ||
+		filname[len - 1] != 'b' || 
+		filname[len - 2] != 'u' || filname[len - 3] != 'c')
 		return (0);
-	else if (ft_strncmp(tmp, ".cub", ft_strlen(".cub")))
-	{
-		free(tmp);
-		return (0);
-	}
 	ext = get_ext(filname);
 	if (ft_strncmp(".cub", ext, ft_strlen(".cub")) != 0 || *filname == '.')
 	{

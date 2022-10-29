@@ -10,17 +10,16 @@ int main(int argc, char **argv)
         print_error("Invalid map !");
     fd = open(argv[1], O_RDONLY);
     if ( fd == -1)
-        print_error("Cannot open the map ");
+        print_error("Cannot open this file ");
     while(1)
     {
         line = get_next_line(fd);
-        if (line && !ft_strchr(line, '\n'))
-			break ;
-        else if (!line)
-            print_error("Empty map ");
-        else if (line[0] == '\n')
-            print_error("New line ");
+        if (!line)
+            break ;
+        else if (!valid_texture(line))
+            print_error("Invalid type ");
+        else if (valid_texture(line) == -1)            
+            print_error("hhhhhhhh ");
         free(line);
-
     }
 }
