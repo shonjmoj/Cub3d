@@ -18,8 +18,14 @@ int main(int argc, char **argv)
             break ;
         else if (!valid_texture(line))
             print_error("Invalid type ");
-        else if (valid_texture(line) == -1)            
+        else if (valid_texture(line) == -1)
             print_error("hhhhhhhh ");
+        // printf("%s", line);
         free(line);
     }
+    // while (1)
+    // {
+    //     /* code */
+    // }
+    
 }

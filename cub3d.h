@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/10/29 15:44:43 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:54:14 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		valid_side(char *line);
 void	print_error(const char *error);
 char	*ft_free(char **adr_str);
 int		valid_texture(char *line);
+int     return_and_free(void *ptr);
 
 #endif
