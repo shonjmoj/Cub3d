@@ -6,10 +6,9 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 15:42:46 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:35:27 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -87,7 +86,8 @@ int	get_textures(char *line, t_map *map)
 	texture = ft_split(line, ' ');
 	if (tab2d_length(texture) != 2 || !valid_side(texture[0]) || \
 		(ft_strncmp(texture[0], "F", ft_strlen(texture[0])) && \
-		ft_strncmp(texture[0], "C", ft_strlen(texture[0])) && !valid_texture(texture[1])))
+		ft_strncmp(texture[0], "C", ft_strlen(texture[0])) && \
+		!valid_texture(texture[1])))
 		return (return_and_free(texture), 0);
 	if (!ft_strncmp(texture[0], "NO", ft_strlen(texture[0])))
 		map->no = ft_strtrim(texture[1], "\n");
@@ -97,12 +97,10 @@ int	get_textures(char *line, t_map *map)
 		map->we = ft_strtrim(texture[1], "\n");
 	else if (!ft_strncmp(texture[0], "EA", ft_strlen(texture[0])))
 		map->ea = ft_strtrim(texture[1], "\n");
-	else if (!ft_strncmp(texture[0], "F", ft_strlen(texture[0]))) {
+	else if (!ft_strncmp(texture[0], "F", ft_strlen(texture[0])))
 		map->floor = ft_strtrim(texture[1], "\n");
-	}
-	else if (!ft_strncmp(texture[0], "C", ft_strlen(texture[0]))) {	
+	else if (!ft_strncmp(texture[0], "C", ft_strlen(texture[0])))
 		map->ceilling = ft_strtrim(texture[1], "\n");
-	}
 	free_2d(texture);
 	return (1);
 }

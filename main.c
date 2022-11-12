@@ -3,7 +3,10 @@
 int main(int argc, char **argv)
 {
     char *line = NULL;
+    t_map map;
     int fd;
+    
+    init_map(&map);
     if (argc != 2)
         print_error("Invalid arguments ");
     if (!check_map_ext(argv[1]))
@@ -16,16 +19,13 @@ int main(int argc, char **argv)
         line = get_next_line(fd);
         if (!line)
             break ;
-        else if (!valid_texture(line))
-            print_error("Invalid type ");
-        else if (valid_texture(line) == -1)
-            print_error("hhhhhhhh ");
-        // printf("%s", line);
+        if (line[0] != '\n')
+            get_textures(line, &map);
         free(line);
     }
-    // while (1)
-    // {
-    //     /* code */
-    // }
-    
+    if (!completed_textures(&map) || !get_colors(&map))
+        print_error("Texture error !");
+    printf("floor %s\nceilling %s\nc_red %d\nc_green %d\nc_blue %d\nf_red %d\nf_green %d\nf_blue %d\n",map.floor, map.ceilling, map.colors.c_red, map.colors.c_green, map.colors.c_blue, map.colors.f_red, map.colors.f_green, map.colors.f_blue);
+    clear_map(&map);
+    while(1){}
 }

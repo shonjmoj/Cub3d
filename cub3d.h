@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 15:42:12 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 16:37:23 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 
 # define BUFFER_SIZE 1000
 
-typedef struct s_rgb 
+typedef struct s_rgb
 {
 	int	c_red;
-	int f_red;
-	int c_green;
-	int f_green;
-	int c_blue;
+	int	f_red;
+	int	c_green;
+	int	f_green;
+	int	c_blue;
 	int	f_blue;
 }			t_rgb;
 
