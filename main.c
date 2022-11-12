@@ -19,11 +19,12 @@ int main(int argc, char **argv)
         line = get_next_line(fd);
         if (!line)
             break ;
-        if (!valid_side(line) || !get_textures(line, &map))
-            print_error("Invalid texture !");
+        if (line[0] != '\n')
+            get_textures(line, &map);
         free(line);
     }
-    if (!completed_textures(&map))
-        print_error("Missed texture !");
-    // while(1){}
+    if (!completed_textures(&map) || !get_colors(&map))
+        print_error("texture error !");
+    printf("floor %s\nceilling %s\nc_red %d\nc_green %d\nc_blue %d\nf_red %d\nf_green %d\nf_blue %d\n",map.floor, map.ceilling, map.colors.c_red, map.colors.c_green, map.colors.c_blue, map.colors.f_red, map.colors.f_green, map.colors.f_blue);
+    while(1){}
 }

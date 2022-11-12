@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 11:46:03 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 15:18:08 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,25 @@
 
 # define BUFFER_SIZE 1000
 
+typedef struct s_rgb 
+{
+	int	c_red;
+	int f_red;
+	int c_green;
+	int f_green;
+	int c_blue;
+	int	f_blue;
+}			t_rgb;
+
 typedef struct s_map
 {
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	*floor;
+	char	*ceilling;
+	t_rgb	colors;
 	char	**map;
 
 }			t_map;
@@ -42,5 +55,8 @@ void	init_map(t_map *map);
 void	free_2d(char **arr);
 int		tab2d_length(char **arr);
 int		completed_textures(t_map *map);
+void	clear_map(t_map *map);
+int		free_all_2dtabs(void *ptr1, void *ptr2);
+int		get_colors(t_map *map);
 
 #endif

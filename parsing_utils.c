@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 11:43:37 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 15:32:59 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	valid_side(char *line)
 {
-	if ((line[0] == 'N' && line[1] == 'O' && line[2] == ' ') || \
-		(line[0] == 'S' && line[1] == 'O' && line[2] == ' ') || \
-		(line[0] == 'W' && line[1] == 'E' && line[2] == ' ') || \
-		(line[0] == 'E' && line[1] == 'A' && line[2] == ' ') || \
-		(line[0] == 'F' && line[1] == ' ') || \
-		(line[0] == 'C' && line[1] == ' ') || \
+	if ((line[0] == 'N' && line[1] == 'O') || \
+		(line[0] == 'S' && line[1] == 'O') || \
+		(line[0] == 'W' && line[1] == 'E') || \
+		(line[0] == 'E' && line[1] == 'A') || \
+		(line[0] == 'F') || \
+		(line[0] == 'C') || \
 		line[0] == '\n')
 		return (1);
 	return (0);
@@ -31,6 +31,8 @@ void	init_map(t_map *map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	map->ceilling = NULL;
+	map->floor = NULL;
 	map->map = NULL;
 }
 
@@ -82,12 +84,10 @@ int	get_textures(char *line, t_map *map)
 	char	**texture;
 
 	texture = ft_split(line, ' ');
-	if (tab2d_length(texture) != 2 || !valid_side(line) || \
-		!valid_texture(texture[1]))
-	{
-		free_2d(texture);
-		return (0);
-	}
+	if (tab2d_length(texture) != 2 || !valid_side(texture[0]) || \
+		(ft_strncmp(texture[0], "F", ft_strlen(texture[0])) && \
+		ft_strncmp(texture[0], "C", ft_strlen(texture[0])) && !valid_texture(texture[1])))
+		return (return_and_free(texture), 0);
 	if (!ft_strncmp(texture[0], "NO", ft_strlen(texture[0])))
 		map->no = ft_strtrim(texture[1], "\n");
 	else if (!ft_strncmp(texture[0], "SO", ft_strlen(texture[0])))
@@ -96,6 +96,12 @@ int	get_textures(char *line, t_map *map)
 		map->we = ft_strtrim(texture[1], "\n");
 	else if (!ft_strncmp(texture[0], "EA", ft_strlen(texture[0])))
 		map->ea = ft_strtrim(texture[1], "\n");
+	else if (!ft_strncmp(texture[0], "F", ft_strlen(texture[0]))) {
+		map->floor = ft_strtrim(texture[1], "\n");
+	}
+	else if (!ft_strncmp(texture[0], "C", ft_strlen(texture[0]))) {	
+		map->ceilling = ft_strtrim(texture[1], "\n");
+	}
 	free_2d(texture);
 	return (1);
 }
