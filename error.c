@@ -6,9 +6,10 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 15:12:41 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 15:43:15 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -31,6 +32,7 @@ int	free_all_2dtabs(void *ptr1, void *ptr2)
 	tab2d_length(ptr2);
 	return (0);
 }
+
 void	free_2d(char **arr)
 {
 	int	i;
