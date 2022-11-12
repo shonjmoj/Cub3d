@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/10/31 10:54:08 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:46:34 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,38 @@ void	print_error(const char *error)
 	exit(1);
 }
 
-
-int return_and_free(void *ptr)
+int	return_and_free(void *ptr)
 {
 	free(ptr);
 	return (0);
+}
+
+void	free_2d(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr != NULL)
+	{
+		while (arr[i] != NULL)
+		{
+			free(arr[i]);
+			i++;
+		}
+	}
+	free(arr);
+	arr = NULL;
+}
+
+int	tab2d_length(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr != NULL)
+	{
+		while (arr[i])
+			i++;
+	}
+	return (i);
 }
