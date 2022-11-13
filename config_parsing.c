@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 16:36:56 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 13:49:22 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,41 @@ int	check_map_ext(char *filname)
 	return (1);
 }
 
-int	get_colors(t_map *map)
+void set_colors(char **colors, t_map *map, char type)
 {
-	char	**c;
-	char	**f;
+	if (type == 'C')
+	{
+		map->colors.c_red = ft_atoi(colors[0]);
+		map->colors.c_green = ft_atoi(colors[1]);
+		map->colors.c_blue = ft_atoi(colors[2]);
+	}
+	else if (type == 'F')
+	{
+		map->colors.f_red = ft_atoi(colors[0]);
+		map->colors.f_green = ft_atoi(colors[1]);
+		map->colors.f_blue = ft_atoi(colors[2]);
+	}
+}
 
-	c = NULL;
-	f = NULL;
-	c = ft_split(map->ceilling, ',');
-	f = ft_split(map->floor, ',');
-	if (tab2d_length(c) != 3 || tab2d_length(f) != 3 || \
-		!all_digit(c[0]) || !all_digit(c[1]) || \
-		!all_digit(c[2]) || !all_digit(f[0]) || \
-		!all_digit(f[1]) || !all_digit(f[2]))
-		return (free_all_2dtabs(c, f), 0);
-	map->colors.c_red = ft_atoi(c[0]);
-	map->colors.c_green = ft_atoi(c[1]);
-	map->colors.c_blue = ft_atoi(c[2]);
-	map->colors.f_red = ft_atoi(f[0]);
-	map->colors.f_green = ft_atoi(f[1]);
-	map->colors.f_blue = ft_atoi(f[2]);
-	free_all_2dtabs(c, f);
+int	get_textures2(t_map *map, char *type)
+{
+	char **colors;
+
+	colors = NULL;
+	colors = ft_split(map->f_c, ',');
+	if (tab2d_length(colors) != 3)
+	{
+		free_2d(colors);
+		return (0);
+	}
+	if (!all_digit(colors[0]) || !all_digit(colors[1]) || \
+		!all_digit(colors[2]))
+	{
+		free_2d(colors);
+		return (0);
+	}
+	set_colors(colors, map, type[0]);
+	free_2d(colors);
+	free(map->f_c);
 	return (1);
 }

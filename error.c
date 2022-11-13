@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 16:37:34 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 12:48:46 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	return_and_free(void *ptr)
 
 int	free_all_2dtabs(void *ptr1, void *ptr2)
 {
-	tab2d_length(ptr1);
-	tab2d_length(ptr2);
+	free_2d(ptr1);
+	free_2d(ptr2);
 	return (0);
 }
 

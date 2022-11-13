@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 16:35:27 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 12:41:01 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ void	init_map(t_map *map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
-	map->ceilling = NULL;
-	map->floor = NULL;
+	map->f_c = NULL;
 	map->map = NULL;
+	map->colors.c_red = -1;
+	map->colors.c_green = -1;
+	map->colors.c_blue = -1;
+	map->colors.f_red = -1;
+	map->colors.f_green = -1;
+	map->colors.f_blue = -1;
 }
 
 void	clear_map(t_map *map)
@@ -46,13 +51,18 @@ void	clear_map(t_map *map)
 		free(map->we);
 	if (map->ea)
 		free(map->ea);
+	if (map->f_c)
+		free(map->f_c);
 	if (map->map)
 		free_2d(map->map);
 }
 
 int	completed_textures(t_map *map)
 {
-	if (!map->no || !map->so || !map->we || !map->ea)
+	if (!map->no || !map->so || !map->we || !map->ea || \
+		map->colors.c_red == -1 || map->colors.c_green == -1 || \
+		map->colors.c_blue == -1 || map->colors.f_red == -1 || \
+		map->colors.f_green == -1 || map->colors.f_blue == -1 )
 		return (0);
 	return (1);
 }	
@@ -97,10 +107,14 @@ int	get_textures(char *line, t_map *map)
 		map->we = ft_strtrim(texture[1], "\n");
 	else if (!ft_strncmp(texture[0], "EA", ft_strlen(texture[0])))
 		map->ea = ft_strtrim(texture[1], "\n");
-	else if (!ft_strncmp(texture[0], "F", ft_strlen(texture[0])))
-		map->floor = ft_strtrim(texture[1], "\n");
-	else if (!ft_strncmp(texture[0], "C", ft_strlen(texture[0])))
-		map->ceilling = ft_strtrim(texture[1], "\n");
+	else
+	{
+		map->f_c = ft_strtrim(texture[1], "\n");
+		get_textures2(map, texture[0]);
+	}
 	free_2d(texture);
 	return (1);
 }
+
+
+

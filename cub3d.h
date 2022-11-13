@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/12 16:37:23 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:11:16 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*floor;
-	char	*ceilling;
+	char	*f_c;
 	t_rgb	colors;
 	char	**map;
 
@@ -57,6 +56,6 @@ int		tab2d_length(char **arr);
 int		completed_textures(t_map *map);
 void	clear_map(t_map *map);
 int		free_all_2dtabs(void *ptr1, void *ptr2);
-int		get_colors(t_map *map);
-
+int		get_textures2(t_map *map, char *type);
+int		valid_parsing(t_map *map, int fd);
 #endif
