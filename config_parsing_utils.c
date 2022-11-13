@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 14:44:49 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:51:06 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	completed_config(t_map *map)
 	if (!map->no || !map->so || !map->we || !map->ea || \
 		map->colors.c_red == -1 || map->colors.c_green == -1 || \
 		map->colors.c_blue == -1 || map->colors.f_red == -1 || \
-		map->colors.f_green == -1 || map->colors.f_blue == -1 )
+		map->colors.f_green == -1 || map->colors.f_blue == -1)
 		return (0);
 	return (1);
 }	
@@ -118,6 +118,3 @@ int	get_textures(char *line, t_map *map)
 	free_2d(texture);
 	return (1);
 }
-
-
-

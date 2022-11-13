@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   config_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 13:49:22 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:50:28 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_map_ext(char *filname)
 	return (1);
 }
 
-void set_colors(char **colors, t_map *map, char type)
+void	set_colors(char **colors, t_map *map, char type)
 {
 	if (type == 'C')
 	{
@@ -92,7 +92,7 @@ void set_colors(char **colors, t_map *map, char type)
 
 int	get_textures2(t_map *map, char *type)
 {
-	char **colors;
+	char	**colors;
 
 	colors = NULL;
 	colors = ft_split(map->f_c, ',');
