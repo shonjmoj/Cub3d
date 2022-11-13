@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   config_parsing_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 12:41:01 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 14:44:49 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	clear_map(t_map *map)
 		free_2d(map->map);
 }
 
-int	completed_textures(t_map *map)
+int	completed_config(t_map *map)
 {
 	if (!map->no || !map->so || !map->we || !map->ea || \
 		map->colors.c_red == -1 || map->colors.c_green == -1 || \
@@ -84,7 +84,10 @@ int	valid_texture(char *texture)
 	}
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
+	{
+		free(tmp);
 		return (0);
+	}
 	free(tmp);
 	return (1);
 }

@@ -14,9 +14,8 @@ int main(int argc, char **argv)
     fd = open(argv[1], O_RDONLY);
     if ( fd == -1)
         print_error("Cannot open this file ");
-    if (!valid_parsing(&map, fd) || !completed_textures(&map)) {
+    if (!valid_parsing(&map, fd) || !completed_config(&map)) {
         print_error("Invalid config ");
-        clear_map(&map);
     }
     while(1){}
 }
