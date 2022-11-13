@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 17:30:35 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:55:54 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	valid_map(char *line, int fd)
 	{
 		if (!line)
 			break ;
-		if (line[0] == '\n')
+		if (line[0] == '\n' || !check_walls(line))
 			return (return_and_free(line), 0);
 		free(line);
 		line = get_next_line(fd);

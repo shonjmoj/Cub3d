@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_parsing_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 14:54:01 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 18:54:44 by elounejj         ###   ########.fr       */
+/*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
+/*   Updated: 2022/11/13 19:05:33 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	check_walls(char *line)
 {
-	t_map	map;
-	int		fd;
+	int	i;
+	int	j;
 
-	if (argc != 2)
-		print_error("Invalid arguments !");
-	if (!check_map_ext(argv[1]))
-		print_error("Invalid map !");
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		print_error("Cannot open this file !");
-	if (!completed_config(&map))
-		print_error("Invalid config !");
-	if (!valid_parsing(&map, fd))
-		print_error("Invalid Map !");
-	// while(1){}
-	return (0);
+	i = 0;
+	j = ft_strlen(line) - 2;
+	while (line[i] == ' ')
+		i++;
+	while (line[j] == ' ')
+		j--;
+	if (line[i] != '1' || line[j] != '1')
+		return (0);
+	return (1);
 }
