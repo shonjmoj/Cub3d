@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/14 12:49:44 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:14:01 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int valid_top_bottom_walls(char **map)
 	return (1);
 }
 
-
-
 int check_map_characters(t_map *map)
 {
 	int i;
@@ -114,10 +112,23 @@ int check_map_characters(t_map *map)
 	while(i != len)
 	{
 		j = 0;
-		if ()
-				return (0);
-		printf("%s\n", map->map[i]);
 		i++;
 	}
 	return (1);
+}
+
+int	get_map_width(t_map *map)
+{
+	int i;
+	int w;
+	
+	i = 0;
+	w = ft_strlen(map->map[i]);
+	while(map->map[i])
+	{
+		if (ft_strlen(map->map[i]) > w)
+			w = ft_strlen(map->map[i]);
+		i++;
+	}
+	return(w);
 }
