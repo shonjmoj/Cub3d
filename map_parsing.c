@@ -6,13 +6,13 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 18:55:54 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:02:27 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	valid_map(char *line, int fd)
+int	valid_map(char *line, int fd, t_map *map)
 {
 	while (1)
 	{
@@ -25,11 +25,14 @@ int	valid_map(char *line, int fd)
 	{
 		if (!line)
 			break ;
-		if (line[0] == '\n' || !check_walls(line))
+		if (line[0] == '\n' || !check_map(line))
 			return (return_and_free(line), 0);
+		map->map = tab_join(map->map, line);
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!check_map_characters(map))
+		return (return_and_free(line), 0);
 	return (1);
 }
 
@@ -48,7 +51,7 @@ int	valid_parsing(t_map *map, int fd)
 			if (get_textures(line, map) == 0)
 				return (return_and_free(line), 0);
 		if (completed_config(map))
-			if (!valid_map(line, fd))
+			if (!valid_map(line, fd, map))
 				return (return_and_free(line), 0);
 		free(line);
 	}

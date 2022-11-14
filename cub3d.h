@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 18:49:11 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:55:56 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ void	clear_map(t_map *map);
 int		free_all_2dtabs(void *ptr1, void *ptr2);
 int		get_textures2(t_map *map, char *type);
 int		valid_parsing(t_map *map, int fd);
-int		check_walls(char *line);
+int		check_map(char *line);
+char	**tab_join(char **arr, char *str);
+int		check_map_characters(t_map *map);
+int		valid_top_bottom_walls(char **map);
 #endif
