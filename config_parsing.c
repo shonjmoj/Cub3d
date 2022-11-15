@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 14:50:28 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:37:06 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int	get_textures2(t_map *map, char *type)
 		return (0);
 	}
 	if (!all_digit(colors[0]) || !all_digit(colors[1]) || \
-		!all_digit(colors[2]))
+		!all_digit(colors[2]) || ft_atoi(colors[0]) < 0 || \
+		ft_atoi(colors[0]) > 255 || ft_atoi(colors[1]) < 0 || \
+		ft_atoi(colors[1]) > 255 || ft_atoi(colors[2]) < 0 || \
+		ft_atoi(colors[2]) > 255)
 	{
 		free_2d(colors);
 		return (0);
