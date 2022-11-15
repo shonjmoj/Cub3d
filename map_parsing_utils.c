@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/14 17:14:01 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:14:21 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ char	**tab_join(char **arr, char *str)
 	{
 		while (arr[i] != NULL)
 		{
-			tab[i] = ft_strtrim(arr[i], "\n");
+			tab[i] = ft_strdup(arr[i]);
 			i++;
 		}
 	}
-	tab[i++] = ft_strtrim(str, "\n");
+	tab[i++] = ft_strdup(str);
 	tab[i] = NULL;
 	free_2d(arr);
 	return (tab);
@@ -120,15 +120,58 @@ int check_map_characters(t_map *map)
 int	get_map_width(t_map *map)
 {
 	int i;
-	int w;
+	size_t w;
 	
 	i = 0;
 	w = ft_strlen(map->map[i]);
-	while(map->map[i])
+	if (map->map)
 	{
-		if (ft_strlen(map->map[i]) > w)
-			w = ft_strlen(map->map[i]);
-		i++;
+		while(map->map[i])
+		{
+			if (ft_strlen(map->map[i]) > w)
+				w = ft_strlen(map->map[i]);
+			i++;
+		}
 	}
 	return(w);
+}
+
+char *resize_line(char *line, size_t size)
+{
+	int i;
+	char *newline;
+
+	newline = NULL;
+	i = 0;
+	newline = malloc(sizeof(char) * size + 1);
+	while (line[i])
+	{
+		newline[i] = line[i];
+		i++;	
+	}
+	if (line[i] == '\0')
+		while (i < size)
+		{
+			newline[i] = ' ';
+			i++;
+		}
+	newline[i] = '\0';
+	return newline;
+}
+
+void resize_map(char **map, size_t size)
+{
+	int		i;
+	char	*newline;
+
+	newline = NULL;
+	i = 0;
+	while (map[i])
+	{
+		newline = resize_line(map[i], size);
+		free(map[i]);
+		map[i] = ft_strtrim(newline, "\n");
+		free(newline);
+		i++;
+	}
 }
