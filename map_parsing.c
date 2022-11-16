@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/16 13:03:44 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:14:05 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ int	valid_map(char *line, int fd, t_map *map)
 {
 	while (1)
 	{
+		if (ft_strchr(line, ' ') && ft_strchr(line, '1'))
+			break;
+		// printf("%s", line);
 		line = get_next_line(fd);
+	}
+	while (1)
+	{
 		if (!line)
 			break ;
 		if (line[0] == '\n' && map->map)
@@ -24,10 +30,8 @@ int	valid_map(char *line, int fd, t_map *map)
 		if (line[0] != '\n')
 			map->map = tab_join(map->map, line);
 		free(line);
+		line = get_next_line(fd);
 	}
-	// int i = 0;
-	// while (map->map[i])
-	// 	printf("%s\n", map->map[i++]);
 	if (!valid_walls(map->map) || check_map_characters(map->map) != 1)
 		return (0);
 	return (1);
