@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/15 17:37:06 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:00:11 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	set_colors(char **colors, t_map *map, char type)
 	}
 }
 
-int	get_textures2(t_map *map, char *type)
+int	get_colors(t_map *map, char *type)
 {
 	char	**colors;
 
