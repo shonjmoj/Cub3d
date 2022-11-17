@@ -6,42 +6,110 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/16 13:12:17 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:49:20 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_map_characters(char **map)
+int valid_floor(char **map, int length, char character)
 {
 	int	i;
-	int	len;
+	int	j;
+
+	i = 1;
+	while(i < length)
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if (character == '0')
+				if ((map[i][j] == '0' && map[i][j + 1] != '0' && \
+					map[i][j + 1] != '1' && map[i][j + 1] != character) || \
+					(map[i][j] == '0' && map[i][j - 1] != '0' && \
+					map[i][j - 1] != '1' && map[i][j - 1] != character) || \
+					(map[i][j] == '0' && map[i + 1][j] != '0' && \
+					map[i + 1][j] != '1' && map[i + 1][j] != character) || \
+					(map[i][j] == '0' && map[i - 1][j] != '0' && \
+					map[i - 1][j] != '1' && map[i - 1][j] != character))
+					return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int valid_player(char **map, int length, char character)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while(i < length)
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if (character == player)
+				if ((map[i][j] == player && map[i][j + 1] != '0' && \
+					map[i][j + 1] != '1') || \
+					(map[i][j] == player && map[i][j - 1] != '0' && \
+					map[i][j - 1] != '1') || \
+					(map[i][j] == player && map[i + 1][j] != '0' && \
+					map[i + 1][j] != '1') || \
+					(map[i][j] == player && map[i - 1][j] != '0' && \
+					map[i - 1][j] != '1'))
+					return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+char get_player(char **map, int length)
+{
+	int	i;
 	int	j;
 	int p;
 
 	p = 0;
 	i = 1;
-	len = tab2d_length(map) - 1;
-	while (i < len)
+	while(i < length)
 	{
 		j = 0;
-		while (map[i][j])
+		while(map[i][j])
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || \
 				map[i][j] == 'W' || map[i][j] == 'E')
-			{
-				if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ') 
-					return (0);
-				p++;
-			}
-			if ((map[i][j] == '0' && map[i + 1][j] == ' ') || \
-				(map[i][j] == ' ' && map[i + 1][j] == '0'))
-				return (0);
+				{
+					player = map[i][j];
+					p++;
+				}
 			j++;
 		}
 		i++;
 	}
-	return (p);	
+	if (p != 1)
+		return (-1);
+	return (player);
+}
+
+int	check_map_characters(t_map *map)
+{
+	int	i;
+	int	len;
+
+	i = 1;
+	len = tab2d_length(map->map) - 1;
+	player = get_player(map->map, len);
+	// printf("PLAYER = %d\n", player);
+	if (player == -1 || \
+		!valid_floor(map->map, len, player) || \
+		!valid_player(map->map, len, player))
+		return (0);
+	return (1);	
 }
 
 int	check_walls(char *line)
@@ -131,11 +199,12 @@ int	valid_walls(char **map)
 			return (0);
 		i++;
 	}
-	i = 0;
-	while (++i < len)
+	i = 1;
+	while (i < len)
 	{
 		if (!check_all_walls(map[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }

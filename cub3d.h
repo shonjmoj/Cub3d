@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/16 13:01:11 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:08:21 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "Libft/libft.h"
 
 # define BUFFER_SIZE 1000
+
+char player;
 
 typedef struct s_rgb
 {
@@ -43,6 +45,7 @@ typedef struct s_map
 
 }			t_map;
 
+
 char	*get_next_line(int fd);
 int		check_map_ext(char *filname);
 int		valid_side(char *line);
@@ -64,6 +67,6 @@ int		valid_walls(char **map);
 int		get_map_width(t_map *map);
 char	*resize_line(char *line, size_t size);
 void	resize_map(char **map, size_t size);
-int		check_map_characters(char **map);
+int		check_map_characters(t_map *map);
 
 #endif
