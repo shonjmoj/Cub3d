@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/17 14:08:21 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/19 10:08:56 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		valid_parsing(t_map *map, int fd);
 int		check_all_walls(char *line);
 char	**tab_join(char **arr, char *str);
 int		valid_walls(char **map);
+int		is_wall(char *line);
 int		get_map_width(t_map *map);
 char	*resize_line(char *line, size_t size);
 void	resize_map(char **map, size_t size);

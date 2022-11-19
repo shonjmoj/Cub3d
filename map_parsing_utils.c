@@ -6,67 +6,31 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/17 14:49:20 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/19 18:46:02 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int valid_floor(char **map, int length, char character)
-{
-	int	i;
-	int	j;
+// int valid_floor(char **map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 1;
-	while(i < length)
-	{
-		j = 0;
-		while(map[i][j])
-		{
-			if (character == '0')
-				if ((map[i][j] == '0' && map[i][j + 1] != '0' && \
-					map[i][j + 1] != '1' && map[i][j + 1] != character) || \
-					(map[i][j] == '0' && map[i][j - 1] != '0' && \
-					map[i][j - 1] != '1' && map[i][j - 1] != character) || \
-					(map[i][j] == '0' && map[i + 1][j] != '0' && \
-					map[i + 1][j] != '1' && map[i + 1][j] != character) || \
-					(map[i][j] == '0' && map[i - 1][j] != '0' && \
-					map[i - 1][j] != '1' && map[i - 1][j] != character))
-					return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int valid_player(char **map, int length, char character)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while(i < length)
-	{
-		j = 0;
-		while(map[i][j])
-		{
-			if (character == player)
-				if ((map[i][j] == player && map[i][j + 1] != '0' && \
-					map[i][j + 1] != '1') || \
-					(map[i][j] == player && map[i][j - 1] != '0' && \
-					map[i][j - 1] != '1') || \
-					(map[i][j] == player && map[i + 1][j] != '0' && \
-					map[i + 1][j] != '1') || \
-					(map[i][j] == player && map[i - 1][j] != '0' && \
-					map[i - 1][j] != '1'))
-					return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while (map[i][j])
+// 		{
+// 			if (map[i][j] == ' ' && (map[i][j + 1] != '1' || \
+// 				map[i][j + 1] != ' ' || map[i][j - 1] != '1' || \
+// 				map[i][j - 1] != ' '))			
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 char get_player(char **map, int length)
 {
@@ -104,10 +68,7 @@ int	check_map_characters(t_map *map)
 	i = 1;
 	len = tab2d_length(map->map) - 1;
 	player = get_player(map->map, len);
-	// printf("PLAYER = %d\n", player);
-	if (player == -1 || \
-		!valid_floor(map->map, len, player) || \
-		!valid_player(map->map, len, player))
+	if (player == -1 || !valid_walls(map->map))
 		return (0);
 	return (1);	
 }
@@ -135,27 +96,6 @@ int	check_walls(char *line)
 	return (1);
 }
 
-char	**tab_join(char **arr, char *str)
-{
-	char	**tab;
-	int		i;
-
-	tab = malloc(sizeof(char *) * (tab2d_length(arr) + 2));
-	i = 0;
-	if (arr != NULL)
-	{
-		while (arr[i] != NULL)
-		{
-			tab[i] = ft_strtrim(arr[i], "\n");
-			i++;
-		}
-	}
-	tab[i++] = ft_strtrim(str, "\n");
-	tab[i] = NULL;
-	free_2d(arr);
-	return (tab);
-}
-
 int	check_all_walls(char *line)
 {
 	int	i;
@@ -169,7 +109,7 @@ int	check_all_walls(char *line)
 		i++;
 	while (line[j] == ' ')
 		j--;
-	while (i != j)
+	while (i <= j)
 	{
 		if ((line[i] == '0' && line[i + 1] == ' ') || \
 			(line[i] == '0' && line[i - 1] == ' '))
@@ -179,33 +119,56 @@ int	check_all_walls(char *line)
 	return (1);
 }
 
+char	**tab_join(char **arr, char *str)
+{
+	char	**tab;
+	int		i;
+
+	tab = malloc(sizeof(char *) * (tab2d_length(arr) + 2));
+	i = 0;
+	if (arr != NULL)
+	{
+		while (arr[i] != NULL)
+		{
+				tab[i] = ft_strtrim(arr[i], "\n");
+			i++;
+		}
+	}
+	if (ft_strncmp(str, "\n", ft_strlen(str)))
+		tab[i++] = ft_strtrim(str, "\n");
+	tab[i] = NULL;
+	if (arr)
+		free_2d(arr);
+	return (tab);
+}
+
+
 int	valid_walls(char **map)
 {
 	int	len;
 	int	i;
 
-	i = 0;
+	i = -1;
 	len = tab2d_length(map) - 1;
-	while (map[0][i])
-	{
-		if (map[0][i] != ' ' && map[0][i] != '1')
-			return (0);
-		i++;
-	}
+	while (map[0][i++])
+		if ((map[0][i] != ' ' && map[0][i] != '1') || \
+			(map[0][i] == ' ' && map[1][i] == '0') || \
+			(map[0][i] == ' ' && map[1][i] == player)) {
+				return (0);
+			}
 	i = 0;
 	while (map[len][i])
-	{
-		if (map[len][i] != ' ' && map[len][i] != '1')
-			return (0);
+	{	
+		if ((map[len][i] != ' ' && map[len][i] != '1') || \
+			(map[len][i] == ' ' && map[len - 1][i] == '0') || \
+			(map[len][i] == ' ' && map[len - 1][i] == player)) 
+				return (0);
 		i++;
 	}
-	i = 1;
-	while (i < len)
-	{
+	i = 0;
+	while (i++ < len)
 		if (!check_all_walls(map[i]))
 			return (0);
-		i++;
-	}
 	return (1);
 }
 
@@ -226,44 +189,4 @@ int	valid_walls(char **map)
 // 		}
 // 	}
 // 	return (w);
-// }
-
-// char *resize_line(char *line, size_t size)
-// {
-// 	size_t	i;
-// 	char	*newline;
-
-// 	newline = NULL;
-// 	i = 0;
-// 	newline = malloc(sizeof(char) * size + 1);
-// 	while (line[i])
-// 	{
-// 		newline[i] = line[i];
-// 		i++;	
-// 	}
-// 	if (line[i] == '\0')
-// 		while (i < size)
-// 		{
-// 			newline[i] = ' ';
-// 			i++;
-// 		}
-// 	newline[i] = '\0';
-// 	return (newline);
-// }
-
-// void resize_map(char **map, size_t size)
-// {
-// 	int		i;
-// 	char	*newline;
-
-// 	newline = NULL;
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		newline = resize_line(map[i], size);
-// 		free(map[i]);
-// 		map[i] = ft_strtrim(newline, "\n");
-// 		free(newline);
-// 		i++;
-// 	}
 // }
