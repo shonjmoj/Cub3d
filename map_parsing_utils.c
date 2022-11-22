@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/22 09:47:34 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/22 13:56:11 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,29 @@ char get_player(char **map, int length)
 	return (player);
 }
 
+int vertical_check(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 2;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if ((map[i][j] == '0' && \
+				map[i - 1][j] != '1' && map[i - 1][j] != '0' && \
+				map[i - 1][j] != player) || (map[i][j] == player && \
+				map[i - 1][j] != '1' && map[i - 1][j] != '0'))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_map_characters(t_map *map)
 {
 	int	i;
@@ -48,10 +71,12 @@ int	check_map_characters(t_map *map)
 	i = 1;
 	len = tab2d_length(map->map) - 1;
 	player = get_player(map->map, len);
-	if (player == -1 || !valid_top_bottom_walls(map->map) || !valid_map_body(map->map))
+	if (player == -1 || !valid_top_bottom_walls(map->map) || \
+		!valid_map_body(map->map) || !vertical_check(map->map))
 		return (0);
 	return (1);	
 }
+
 
 int	valid_floor(char *line)
 {
