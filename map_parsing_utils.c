@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/22 13:56:11 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:04:06 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ int vertical_check(char **map)
 		while (map[i][j])
 		{
 			if ((map[i][j] == '0' && \
-				map[i - 1][j] != '1' && map[i - 1][j] != '0' && \
-				map[i - 1][j] != player) || (map[i][j] == player && \
-				map[i - 1][j] != '1' && map[i - 1][j] != '0'))
+				((map[i - 1][j] != '1' && map[i - 1][j] != '0' && \
+				map[i - 1][j] != player) || (map[i + 1][j] != '1' && \
+				map[i + 1][j] != '0' && map[i + 1][j] != player))) || \
+				(map[i][j] == player && ((map[i - 1][j] != '1' && \
+				map[i - 1][j] != '0') || (map[i + 1][j] != '1' && \
+				map[i + 1][j] != '0'))))
 				return (0);
 			j++;
 		}
