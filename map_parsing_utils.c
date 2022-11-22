@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/21 11:16:28 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:47:34 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,6 @@ int	valid_floor(char *line)
 }
 
 
-char	**tab_join(char **arr, char *str)
-{
-	char	**tab;
-	int		i;
-
-	tab = malloc(sizeof(char *) * (tab2d_length(arr) + 2));
-	i = 0;
-	if (arr != NULL)
-	{
-		while (arr[i] != NULL)
-		{
-				tab[i] = ft_strtrim(arr[i], "\n");
-			i++;
-		}
-	}
-	if (ft_strncmp(str, "\n", ft_strlen(str)))
-		tab[i++] = ft_strtrim(str, "\n");
-	tab[i] = NULL;
-	if (arr)
-		free_2d(arr);
-	return (tab);
-}
-
-
 int	valid_top_bottom_walls(char **map)
 {
 	int	len;
@@ -165,22 +141,3 @@ int valid_map_body(char **map)
 	}
 	return (1);
 }
-
-// int	get_map_width(t_map *map)
-// {
-// 	int		i;
-// 	size_t	w;
-
-// 	i = 0;
-// 	w = ft_strlen(map->map[i]);
-// 	if (map->map)
-// 	{
-// 		while (map->map[i])
-// 		{
-// 			if (ft_strlen(map->map[i]) > w)
-// 				w = ft_strlen(map->map[i]);
-// 			i++;
-// 		}
-// 	}
-// 	return (w);
-// }

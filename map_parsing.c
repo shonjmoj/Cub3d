@@ -6,11 +6,35 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/19 18:51:22 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:36:58 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char	**tab_join(char **arr, char *str)
+{
+	char	**tab;
+	int		i;
+
+	tab = malloc(sizeof(char *) * (tab2d_length(arr) + 2));
+	i = 0;
+	if (arr != NULL)
+	{
+		while (arr[i] != NULL)
+		{
+				tab[i] = ft_strtrim(arr[i], "\n");
+			i++;
+		}
+	}
+	tab[i++] = ft_strtrim(str, "\n");
+	tab[i] = NULL;
+	if (arr)
+		free_2d(arr);
+	return (tab);
+}
+
+
 
 int	valid_parsing(t_map *map, int fd)
 {
@@ -28,13 +52,12 @@ int	valid_parsing(t_map *map, int fd)
 		{
 			free(line);
 			line = get_next_line(fd);
-			while(1)
+			while ((line = get_next_line(fd)))
 			{
 				if (!line)
 					break;
 				map->map = tab_join(map->map, line);
 				free(line);
-				line = get_next_line(fd);
 			}
 		}
 		free(line);
