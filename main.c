@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:54:01 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/22 10:23:45 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:42:48 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 	int		fd;
-	player = -1;
-	
+
+	g_player = -1;
 	init_map(&map);
 	if (argc != 2)
 		print_error("Invalid arguments !");
@@ -28,6 +28,5 @@ int	main(int argc, char **argv)
 		print_error("Cannot open this file !");
 	if (!valid_parsing(&map, fd))
 		print_error("Invalid Map !");
-	// while(1){}
 	return (0);
 }

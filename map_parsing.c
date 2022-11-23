@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/22 10:36:58 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:40:07 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ char	**tab_join(char **arr, char *str)
 	return (tab);
 }
 
-
-
 int	valid_parsing(t_map *map, int fd)
 {
 	char	*line;
@@ -45,17 +43,18 @@ int	valid_parsing(t_map *map, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (line[0] != '\n' || !completed_config(map))
 			get_textures(line, map);
 		if (completed_config(map))
 		{
 			free(line);
 			line = get_next_line(fd);
-			while ((line = get_next_line(fd)))
+			while (1)
 			{
+				line = get_next_line(fd);
 				if (!line)
-					break;
+					break ;
 				map->map = tab_join(map->map, line);
 				free(line);
 			}
