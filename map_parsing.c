@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/23 16:40:07 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:33:29 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ char	**tab_join(char **arr, char *str)
 	return (tab);
 }
 
+int	get_map(char *line, t_map *map, int fd)
+{
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (0);
+		map->map = tab_join(map->map, line);
+		free(line);
+	}
+	return (1);
+}
+
 int	valid_parsing(t_map *map, int fd)
 {
 	char	*line;
@@ -50,14 +63,8 @@ int	valid_parsing(t_map *map, int fd)
 		{
 			free(line);
 			line = get_next_line(fd);
-			while (1)
-			{
-				line = get_next_line(fd);
-				if (!line)
-					break ;
-				map->map = tab_join(map->map, line);
-				free(line);
-			}
+			if (!get_map(line, map, fd))
+				break ;
 		}
 		free(line);
 	}
