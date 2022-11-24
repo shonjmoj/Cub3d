@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/13 14:44:19 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:20:23 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ void	print_error(const char *error)
 int	return_and_free(void *ptr)
 {
 	free(ptr);
-	return (0);
-}
-
-int	free_all_2dtabs(void *ptr1, void *ptr2)
-{
-	free_2d(ptr1);
-	free_2d(ptr2);
 	return (0);
 }
 
