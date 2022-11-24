@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:05 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/23 17:39:10 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:18:46 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	vertical_check(char **map)
 	int	i;
 	int	j;
 
-	i = 2;
+	i = 1;
 	while (map[i])
 	{
 		j = 0;
@@ -92,11 +92,24 @@ int	valid_map_body(char **map)
 	while (i <= len)
 	{
 		if (ft_strlen(map[i]) < ft_strlen(map[i + 1]))
-			if (!check_line(ft_strlen(map[i]), map[i + 1]))
+			if (!is_border(ft_strlen(map[i]), map[i + 1]))
 				return (0);
 		if (!valid_floor(map[i]))
 			return (0);
 		i++;
 	}
 	return (1);
+}
+
+int	tab2d_length(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr != NULL)
+	{
+		while (arr[i])
+			i++;
+	}
+	return (i);
 }

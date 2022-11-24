@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/24 15:27:53 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:17:55 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ int	valid_parsing(t_map *map, int fd)
 	}
 	if (!completed_config(map) || !check_map_characters(map))
 		return (0);
+	int i = 0;
+	while (map->map[i])
+		printf("%s\n", map->map[i++]);
 	return (return_and_free(line), 1);
 }

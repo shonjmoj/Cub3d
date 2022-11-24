@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/24 15:20:23 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:09:32 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,4 @@ void	free_2d(char **arr)
 	arr = NULL;
 }
 
-int	tab2d_length(char **arr)
-{
-	int	i;
 
-	i = 0;
-	if (arr != NULL)
-	{
-		while (arr[i])
-			i++;
-	}
-	return (i);
-}

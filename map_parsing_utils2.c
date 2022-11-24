@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:33:47 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/23 17:39:24 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:15:38 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	valid_floor(char *line)
 	return (1);
 }
 
-int	check_line(size_t index, char *line)
+int	is_border(size_t index, char *line)
 {
 	while (index < ft_strlen(line))
 	{
