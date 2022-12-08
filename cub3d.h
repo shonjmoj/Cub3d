@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/24 16:15:45 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:58:07 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,20 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <mlx.h>
+# include <math.h>
+# include <stdbool.h>
 # include "Libft/libft.h"
 
 # define BUFFER_SIZE 1000
+# define W				10
+# define N				20
+# define S				30
+# define E				40
+# define TILE			16
+# define W_WIDTH		1020
+# define W_HEIGHT		720
+# define FOFV			1.0471975512
 
 char	g_player;
 
@@ -40,10 +51,35 @@ typedef struct s_map
 	char	*we;
 	char	*ea;
 	char	*f_c;
-	t_rgb	colors;
 	char	**map;
+	t_rgb	colors;
+	int x_pos;
+	int y_pos;
+	int height[4];
+	int width[4];
 
 }			t_map;
+
+typedef struct s_vector{
+	double	x;
+	double	y;
+	bool	is_it_vertical;
+}	t_vector;
+
+typedef struct s_calc {
+	int			h;
+	int			v;
+	double		dis_h;
+	double		dis_v;
+}				t_calc;
+
+typedef struct s_image {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_image;
 
 char	*get_next_line(int fd);
 int		check_map_ext(char *filname);
@@ -66,5 +102,6 @@ int		is_border(size_t index, char *line);
 int		check_map_characters(t_map *map);
 int		valid_floor(char *line);
 int		valid_map_body(char **map);
+void	set_player_pos(t_map *data);
 
 #endif

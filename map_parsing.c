@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/24 16:17:55 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:58:35 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int	valid_parsing(t_map *map, int fd)
 	int i = 0;
 	while (map->map[i])
 		printf("%s\n", map->map[i++]);
+	set_player_pos(map);
 	return (return_and_free(line), 1);
 }
