@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 23:26:50 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 17:17:21 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:29:03 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		its_a_wall(t_data *data, int x, int y)
  
 	mapx = x / TILE;
 	mapy = y / TILE;
-	return (data->map_element.map[mapy][mapx]);
+	return (data->map_int[mapy][mapx]);
 }
 
 int		wall_check(t_data *data, double newx, double newy)
@@ -64,8 +64,8 @@ void	ft_raycasting_calc(t_data *data)
 	new_y = data->map_element.y_pos + sin(data->player.rotationangle) * move_s;
 	new_x = new_x + cos(data->player.rotationangle - (90 * M_PI / 180)) * data->player.left_rightdirection * data->player.movespeed;
 	new_y = new_y + sin(data->player.rotationangle - (90 * M_PI / 180)) * data->player.left_rightdirection * data->player.movespeed;
-	// if (wall_check(data, new_x , data->map_element.y_pos) != 1)
+	if (wall_check(data, new_x , data->map_element.y_pos) != 1)
 		data->map_element.x_pos = new_x;
-	// if (wall_check(data, data->map_element.x_pos , new_y) != 1)
+	if (wall_check(data, data->map_element.x_pos , new_y) != 1)
 		data->map_element.y_pos = new_y;
 }

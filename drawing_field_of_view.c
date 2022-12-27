@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 23:29:01 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 17:08:15 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:28:03 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ void	ft_draw_field_of_view(t_data *data)
 int	ft_draw(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->mlx_win);
-	ft_raycasting_calc(data);
 	data->map_element.img = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->map_element.img, \
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
+	ft_raycasting_calc(data);
 	ft_draw_field_of_view(data);
-	puts("l7bss");
 	ft_rendering_wall(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->map_element.img, 0, 0);
 	mlx_destroy_image(data->mlx, data->map_element.img);

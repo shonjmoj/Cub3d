@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:38:01 by asabbar           #+#    #+#             */
-/*   Updated: 2022/12/27 17:20:38 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 20:23:19 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ t_vector ft_position_player(t_data data)
 	exit(0);
 }
 
+void get_player_view()
+{
+	if (g_player == 'S')
+		g_player = 1;	
+	if (g_player == 'W')
+		g_player = 2;	
+	if (g_player == 'E')
+		g_player = 4;	
+	if (g_player == 'N')
+		g_player = 3;	
+}
+
 void ft_window(t_data data)
 {
 	t_vector posi_player;
@@ -45,7 +57,7 @@ void ft_window(t_data data)
 	load_textures(&data);
 	data.player.turndirection = 0;
 	data.player.waldirection = 0;
-	data.player.rotationangle = data.face;
+	data.player.rotationangle = g_player * M_PI / 2;
 	data.player.movespeed = 2;
 	data.player.rotationspeed = 3 * (M_PI / 180);
 	posi_player = ft_position_player(data);
@@ -104,7 +116,6 @@ void free_all(t_data *data)
 // if (!ft_check_map(data.map, 0, 0))
 // 	return (free_all(&data), 1);
 // ft_map_wall(&data, 0, 0);
-// data.map_int = ft_to_int(data.map);
 // data.id = 0;
 // ft_front_of_player(&data);
 // ft_virtualwall(&data);
@@ -124,11 +135,11 @@ int main(int argc, char **argv)
 		print_error("Cannot open this file !");
 	if (!valid_parsing(&data.map_element, fd))
 		print_error("Invalid map config !");
-	// data.map_y = tab2d_length(data.map_element.map);
-	// data.map_x = long_line(data.map_element.map);
-
-	// ziiiidha l bonus rah bonus mazal khasser
-
+	get_player_view();
+	data.map_int = ft_to_int(data.map_element.map);
+	data.map_x = long_line(data.map_element.map);
+	data.map_y = tab2d_length(data.map_element.map);
+	data.id = 0;
 	ft_window(data);
 	return (0);
 }

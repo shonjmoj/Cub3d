@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:44:15 by asabbar           #+#    #+#             */
-/*   Updated: 2022/12/27 17:23:35 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:22:36 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ void	ft_vertical_calc(t_data data, t_vector	*step_v, t_vector	*a_v)
 
 int	ft_check_vertical(t_data data, t_vector	*step_v, t_vector	*a_v, int *v)
 {
-	if ((a_v->y > W_HEIGHT) || (a_v->x > W_WIDTH))
+	if ((a_v->y > data.map_y * TILE) || (a_v->x > data.map_x * TILE))
 		return (0);
 	if (a_v->y < 0 || (a_v->x < 0))
 		return (0);
 	if (data.player.rotationangle >= M_PI / 2
 		&& data.player.rotationangle <= M_PI * 1.5)
 	{
-		if (data.map_element.map[(int)floor(a_v->y / TILE)] \
-			[(int)floor((a_v->x - TILE) / TILE)] == '1')
+		if (data.map_int[(int)floor(a_v->y / TILE)] \
+			[(int)floor((a_v->x - TILE) / TILE)] == 1)
 			return ((*v) = 1, 0);
 	}
 	else
 	{
-		if (data.map_element.map[(int)floor(a_v->y / TILE)] \
-			[(int)floor(a_v->x / TILE)] == '1')
+		if (data.map_int[(int)floor(a_v->y / TILE)] \
+			[(int)floor(a_v->x / TILE)] == 1)
 			return ((*v) = 1, 0);
 	}
 	return (a_v->x += step_v->x, a_v->y += step_v->y, 1);
@@ -89,14 +89,14 @@ int	ft_check_horizontal(t_data data, t_vector *step_h, t_vector *a_h, int *h)
 	if (!(data.player.rotationangle >= 0
 			&& data.player.rotationangle <= M_PI))
 	{
-		if (data.map_element.map[(int)floor((a_h->y - TILE) / TILE)] \
-			[(int)floor(a_h->x / TILE)] == '1')
+		if (data.map_int[(int)floor((a_h->y - TILE) / TILE)] \
+			[(int)floor(a_h->x / TILE)] == 1)
 			return ((*h) = 1, 0);
 	}
 	else
 	{
-		if (data.map_element.map[(int)floor(a_h->y / TILE)] \
-			[(int)floor(a_h->x / TILE)] == '1')
+		if (data.map_int[(int)floor(a_h->y / TILE)] \
+			[(int)floor(a_h->x / TILE)] == 1)
 			return ((*h) = 1, 0);
 	}
 	return (a_h->y += step_h->y, a_h->x += step_h->x, 1);
