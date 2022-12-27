@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:07:48 by youchenn          #+#    #+#             */
-/*   Updated: 2022/10/11 10:00:08 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:19:57 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	ft_draw_wall_minimap(t_data data, int i, int j, t_image img)
 	double	draw_x;
 	double	draw_y;
 
-	draw_x = data.player.x / TILE - 10;
-	draw_y = data.player.y / TILE - 10;
+	draw_x = data..x / TILE - 10;
+	draw_y = data..y / TILE - 10;
 	i = 21;
 	while (--i != 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 09:54:02 by youchenn          #+#    #+#             */
-/*   Updated: 2022/10/16 15:24:42 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:00:08 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 53)
 	{
 		free_all(data);
-		ft_fre2(data->textures.img_data);
+		free_2d((void **)data->map_element.img_data);
 		exit(0);
 	}
 	if (keycode == 124)
@@ -58,7 +58,7 @@ int	cross_x(t_data *data)
 
 	i = -1;
 	free_all(data);
-	ft_fre2(data->textures.img_data);
+	free_2d((void **)data->map_element.img_data);
 	while (data->map_int[++i])
 		free(data->map_int[i]);
 	free(data->map_int);

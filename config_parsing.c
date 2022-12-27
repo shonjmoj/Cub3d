@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:53:48 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/16 11:00:11 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:58:28 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	get_colors(t_map *map, char *type)
 	colors = ft_split(map->f_c, ',');
 	if (tab2d_length(colors) != 3)
 	{
-		free_2d(colors);
+		free_2d((void **)colors);
 		return (0);
 	}
 	if (!all_digit(colors[0]) || !all_digit(colors[1]) || \
@@ -107,11 +107,11 @@ int	get_colors(t_map *map, char *type)
 		ft_atoi(colors[1]) > 255 || ft_atoi(colors[2]) < 0 || \
 		ft_atoi(colors[2]) > 255)
 	{
-		free_2d(colors);
+		free_2d((void **)colors);
 		return (0);
 	}
 	set_colors(colors, map, type[0]);
-	free_2d(colors);
+	free_2d((void **)colors);
 	free(map->f_c);
 	return (1);
 }

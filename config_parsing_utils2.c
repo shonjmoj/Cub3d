@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:28:43 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/23 16:35:44 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:56:57 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	clear_map(t_map *map)
 	if (map->f_c)
 		free(map->f_c);
 	if (map->map)
-		free_2d(map->map);
+		free_2d((void **)map->map);
 }
 
 int	completed_config(t_map *map)

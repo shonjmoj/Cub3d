@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:24:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/24 16:09:32 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:56:07 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	return_and_free(void *ptr)
 	return (0);
 }
 
-void	free_2d(char **arr)
+void	free_2d(void **arr)
 {
 	int	i;
 

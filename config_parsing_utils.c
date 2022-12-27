@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/11/23 16:29:42 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:58:40 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int	get_textures(char *line, t_map *map)
 		else if (!get_textures2(texture, map))
 			return (return_and_free(texture));
 	}
-	free_2d(texture);
+	free_2d((void **)texture);
 	return (1);
 }

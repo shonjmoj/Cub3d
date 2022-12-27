@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/12/08 19:58:35 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:15:40 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**tab_join(char **arr, char *str)
 	tab[i++] = ft_strtrim(str, "\n");
 	tab[i] = NULL;
 	if (arr)
-		free_2d(arr);
+		free_2d((void **)arr);
 	return (tab);
 }
 
@@ -70,9 +70,6 @@ int	valid_parsing(t_map *map, int fd)
 	}
 	if (!completed_config(map) || !check_map_characters(map))
 		return (0);
-	int i = 0;
-	while (map->map[i])
-		printf("%s\n", map->map[i++]);
 	set_player_pos(map);
 	return (return_and_free(line), 1);
 }

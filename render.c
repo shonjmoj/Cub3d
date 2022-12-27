@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 09:57:26 by youchenn          #+#    #+#             */
-/*   Updated: 2022/10/16 20:04:28 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:08:44 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_draw_ceiling(t_data *data, double start, double len)
 {
 	int	color;
 
-	color = create_rgb(data->color.f[2], data->color.f[1], data->color.f[0]);
+	color = create_rgb(data->map_element.colors.c_red, data->map_element.colors.c_green, data->map_element.colors.c_blue);
 	while (start <= len)
 	{
 		my_mlx_pixel_put(&data->img, data->id, start, color);
@@ -33,7 +33,7 @@ void	ft_draw_floor(t_data *data, double start, double len)
 {
 	int	color;
 
-	color = create_rgb(data->color.c[2], data->color.c[1], data->color.c[0]);
+	color = create_rgb(data->map_element.colors.f_red, data->map_element.colors.f_green, data->map_element.colors.f_blue);
 	while (start <= len)
 	{
 		my_mlx_pixel_put(&data->img, data->id, start, color);

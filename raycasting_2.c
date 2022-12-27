@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:35:07 by youchenn          #+#    #+#             */
-/*   Updated: 2022/10/09 23:44:52 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:03:19 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_vector	ft_len_of_line(t_data data)
 			break ;
 	}
 	if (calc.v)
-		calc.dis_v = sqrt(pow((data.player.y - a_v.y), 2) \
-		+ pow((data.player.x - a_v.x), 2));
+		calc.dis_v = sqrt(pow((data.map_element.y_pos - a_v.y), 2) \
+		+ pow((data.map_element.x_pos - a_v.x), 2));
 	else
 		calc.dis_v = -1;
 	while (1)

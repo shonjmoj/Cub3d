@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 09:47:49 by youchenn          #+#    #+#             */
-/*   Updated: 2022/10/11 18:07:07 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:47:22 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ void	invalide_texture(void *img, t_data *data)
 	}
 }
 
-void	get_textures(t_data *data)
+void	load_textures(t_data *data)
 {
 	int	a;
 
-	data->textures.img_data = (int **)malloc((sizeof(int *) * 4));
-	data->textures.img = mlx_xpm_file_to_image(data->mlx, data->textures.ea, \
-		&data->textures.width[0], &data->textures.height[0]);
-	invalide_texture(data->textures.img, data);
-	data->textures.img_data[0] = (int *)mlx_get_data_addr(data->textures.img, \
+	data->map_element.img_data = (int **)malloc((sizeof(int *) * 4));
+	data->map_element.img = mlx_xpm_file_to_image(data->mlx, data->map_element.ea, \
+		&data->map_element.width[0], &data->map_element.height[0]);
+	invalide_texture(data->map_element.img, data);
+	data->map_element.img_data[0] = (int *)mlx_get_data_addr(data->map_element.img, \
 	&a, &a, &a);
-	data->textures.img = mlx_xpm_file_to_image(data->mlx, data->textures.no, \
-	&data->textures.width[1], &data->textures.height[1]);
-	invalide_texture(data->textures.img, data);
-	data->textures.img_data[1] = (int *)mlx_get_data_addr(data->textures.img, \
+	data->map_element.img = mlx_xpm_file_to_image(data->mlx, data->map_element.no, \
+	&data->map_element.width[1], &data->map_element.height[1]);
+	invalide_texture(data->map_element.img, data);
+	data->map_element.img_data[1] = (int *)mlx_get_data_addr(data->map_element.img, \
 	&a, &a, &a);
-	data->textures.img = mlx_xpm_file_to_image(data->mlx, data->textures.so, \
-	&data->textures.width[2], &data->textures.height[2]);
-	invalide_texture(data->textures.img, data);
-	data->textures.img_data[2] = (int *)mlx_get_data_addr(data->textures.img, \
+	data->map_element.img = mlx_xpm_file_to_image(data->mlx, data->map_element.so, \
+	&data->map_element.width[2], &data->map_element.height[2]);
+	invalide_texture(data->map_element.img, data);
+	data->map_element.img_data[2] = (int *)mlx_get_data_addr(data->map_element.img, \
 	&a, &a, &a);
-	data->textures.img = mlx_xpm_file_to_image(data->mlx, data->textures.we, \
-	&data->textures.width[3], &data->textures.height[3]);
-	invalide_texture(data->textures.img, data);
-	data->textures.img_data[3] = (int *)mlx_get_data_addr(data->textures.img, \
+	data->map_element.img = mlx_xpm_file_to_image(data->mlx, data->map_element.we, \
+	&data->map_element.width[3], &data->map_element.height[3]);
+	invalide_texture(data->map_element.img, data);
+	data->map_element.img_data[3] = (int *)mlx_get_data_addr(data->map_element.img, \
 	&a, &a, &a);
 }

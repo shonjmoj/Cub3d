@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:44:15 by asabbar           #+#    #+#             */
-/*   Updated: 2022/10/16 11:40:33 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:23:35 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	ft_horizontal_calc(t_data data, t_vector	*step_h, t_vector	*a_h)
 {
 	if (data.player.rotationangle >= 0 && data.player.rotationangle <= M_PI)
-		a_h->y = floor(data.player.y / TILE) * TILE + TILE;
+		a_h->y = floor(data.map_element.y_pos / TILE) * TILE + TILE;
 	else
-		a_h->y = floor(data.player.y / TILE) * TILE;
-	a_h->x = data.player.x + \
-			((a_h->y - data.player.y) / tan(data.player.rotationangle));
+		a_h->y = floor(data.map_element.y_pos / TILE) * TILE;
+	a_h->x = data.map_element.x_pos + \
+			((a_h->y - data.map_element.y_pos) / tan(data.player.rotationangle));
 	step_h->y = TILE;
 	if (!(data.player.rotationangle >= 0 && data.player.rotationangle <= M_PI))
 		step_h->y *= -1;
@@ -38,11 +38,11 @@ void	ft_vertical_calc(t_data data, t_vector	*step_v, t_vector	*a_v)
 {
 	if (data.player.rotationangle >= M_PI / 2
 		&& data.player.rotationangle <= M_PI * 1.5)
-		a_v->x = floor(data.player.x / TILE) * TILE;
+		a_v->x = floor(data.map_element.x_pos / TILE) * TILE;
 	else
-		a_v->x = floor(data.player.x / TILE) * TILE + TILE;
-	a_v->y = data.player.y + \
-		((a_v->x - data.player.x) * tan(data.player.rotationangle));
+		a_v->x = floor(data.map_element.x_pos / TILE) * TILE + TILE;
+	a_v->y = data.map_element.y_pos + \
+		((a_v->x - data.map_element.x_pos) * tan(data.player.rotationangle));
 	step_v->x = TILE;
 	if (data.player.rotationangle >= \
 		M_PI / 2 && data.player.rotationangle <= M_PI * 1.5)
@@ -59,21 +59,21 @@ void	ft_vertical_calc(t_data data, t_vector	*step_v, t_vector	*a_v)
 
 int	ft_check_vertical(t_data data, t_vector	*step_v, t_vector	*a_v, int *v)
 {
-	if ((a_v->y >= data.map_y * TILE) || (a_v->x >= data.map_x * TILE))
+	if ((a_v->y > W_HEIGHT) || (a_v->x > W_WIDTH))
 		return (0);
 	if (a_v->y < 0 || (a_v->x < 0))
 		return (0);
 	if (data.player.rotationangle >= M_PI / 2
 		&& data.player.rotationangle <= M_PI * 1.5)
 	{
-		if (data.map_int[(int)floor(a_v->y / TILE)] \
-			[(int)floor((a_v->x - TILE) / TILE)] == 1)
+		if (data.map_element.map[(int)floor(a_v->y / TILE)] \
+			[(int)floor((a_v->x - TILE) / TILE)] == '1')
 			return ((*v) = 1, 0);
 	}
 	else
 	{
-		if (data.map_int[(int)floor(a_v->y / TILE)] \
-			[(int)floor(a_v->x / TILE)] == 1)
+		if (data.map_element.map[(int)floor(a_v->y / TILE)] \
+			[(int)floor(a_v->x / TILE)] == '1')
 			return ((*v) = 1, 0);
 	}
 	return (a_v->x += step_v->x, a_v->y += step_v->y, 1);
@@ -89,14 +89,14 @@ int	ft_check_horizontal(t_data data, t_vector *step_h, t_vector *a_h, int *h)
 	if (!(data.player.rotationangle >= 0
 			&& data.player.rotationangle <= M_PI))
 	{
-		if (data.map_int[(int)floor((a_h->y - TILE) / TILE)] \
-			[(int)floor(a_h->x / TILE)] == 1)
+		if (data.map_element.map[(int)floor((a_h->y - TILE) / TILE)] \
+			[(int)floor(a_h->x / TILE)] == '1')
 			return ((*h) = 1, 0);
 	}
 	else
 	{
-		if (data.map_int[(int)floor(a_h->y / TILE)] \
-			[(int)floor(a_h->x / TILE)] == 1)
+		if (data.map_element.map[(int)floor(a_h->y / TILE)] \
+			[(int)floor(a_h->x / TILE)] == '1')
 			return ((*h) = 1, 0);
 	}
 	return (a_h->y += step_h->y, a_h->x += step_h->x, 1);
@@ -105,8 +105,8 @@ int	ft_check_horizontal(t_data data, t_vector *step_h, t_vector *a_h, int *h)
 t_vector	ft_check_calc(t_data data, t_calc calc, t_vector a_h, t_vector a_v)
 {
 	if (calc.h)
-		calc.dis_h = sqrt(pow((data.player.y - a_h.y), 2) \
-			+ pow((data.player.x - a_h.x), 2));
+		calc.dis_h = sqrt(pow((data.map_element.y_pos - a_h.y), 2) \
+			+ pow((data.map_element.x_pos - a_h.x), 2));
 	else
 		calc.dis_h = -1;
 	if (!calc.v)
