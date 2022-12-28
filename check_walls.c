@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 23:26:50 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 19:29:03 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 02:54:03 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		wall_check(t_data *data, double newx, double newy)
 	y = newy;
 	dist = TILE / 8;
 	ret = 0;
-	// puts("wall");
 	if (its_a_wall(data, x - dist, y - dist) == 1)
 		ret = 1;
 	if (its_a_wall(data, x + dist, y - dist) == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:38:01 by asabbar           #+#    #+#             */
-/*   Updated: 2022/12/27 20:23:19 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 02:59:37 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,21 @@ int main(int argc, char **argv)
 	if (!valid_parsing(&data.map_element, fd))
 		print_error("Invalid map config !");
 	get_player_view();
-	data.map_int = ft_to_int(data.map_element.map);
-	data.map_x = long_line(data.map_element.map);
 	data.map_y = tab2d_length(data.map_element.map);
+	data.map_x = long_line(data.map_element.map);
+	data.map_int = ft_to_int(data.map_element.map, data.map_y, data.map_x);
+	// int i = 0;
+	// while (i < data.map_y)
+	// {
+	// 	int j = 0;
+	// 	while (j < data.map_x)
+	// 	{
+	// 		printf("%d ", data.map_int[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 	data.id = 0;
 	ft_window(data);
 	return (0);

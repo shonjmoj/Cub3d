@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:08:24 by elounejj          #+#    #+#             */
-/*   Updated: 2022/12/27 19:58:52 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 02:51:43 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,6 @@ int	ft_check_horizontal(t_data data, t_vector *step_h, t_vector *a_h, int *h);
 void	ft_draw_wall(t_data *data, int start, int len, double wall);
 void	*ft_malloc(int size);
 int	long_line(char **str);
-int	**ft_to_int(char **map);
+int	**ft_to_int(char **map, int length, int width);
 
 #endif

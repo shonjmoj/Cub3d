@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_map_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:04:38 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 19:11:44 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 02:58:49 by youchenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi_map(char str)
 	return (-1);
 }
 
-int	**ft_to_int(char **map)
+int	**ft_to_int(char **map, int length, int width)
 {
 	int	i;
 	int	j;
@@ -37,14 +37,23 @@ int	**ft_to_int(char **map)
 
 	i = -1;
 	j = -1;
-	n_map = ft_malloc(tab2d_length(map) * sizeof(int *));
+	n_map = ft_malloc((length + 1) * sizeof(int *));
 	while (map[++i])
 	{
 		j = -1;
-		n_map[i] = ft_malloc(ft_strlen(map[i]) * sizeof(int));
+		n_map[i] = ft_malloc((width) * sizeof(int));
 		while (map[i][++j])
-			n_map[i][j] = ft_atoi_map(map[i][j]);
+		{
+			if (map[i][j] == ' ')
+				n_map[i][j] = 1;
+			else
+				n_map[i][j] = ft_atoi_map(map[i][j]);
+			
+		}
+		while(j < width)
+			n_map[i][j++] = 1;
 	}
+	n_map[i] = NULL;
 	return (n_map);
 }
 
