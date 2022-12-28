@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 10:44:15 by asabbar           #+#    #+#             */
-/*   Updated: 2022/12/27 19:22:36 by elounejj         ###   ########.fr       */
+/*   Created: 2022/10/08 10:44:15 by youchenn           #+#    #+#             */
+/*   Updated: 2022/12/28 12:20:23 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_horizontal_calc(t_data data, t_vector	*step_h, t_vector	*a_h)
 	else
 		a_h->y = floor(data.map_element.y_pos / TILE) * TILE;
 	a_h->x = data.map_element.x_pos + \
-			((a_h->y - data.map_element.y_pos) / tan(data.player.rotationangle));
+			((a_h->y - data.map_element.y_pos) / \
+				tan(data.player.rotationangle));
 	step_h->y = TILE;
 	if (!(data.player.rotationangle >= 0 && data.player.rotationangle <= M_PI))
 		step_h->y *= -1;

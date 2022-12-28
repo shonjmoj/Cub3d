@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:23:55 by elounejj          #+#    #+#             */
-/*   Updated: 2022/12/27 15:58:40 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:01:54 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	valid_texture(char *texture)
 	tmp = NULL;
 	tmp = ft_strtrim(texture, " \n");
 	len = ft_strlen(tmp) - 1;
-	if (tmp[len] != 'm' || tmp[len - 1] != 'p' || tmp[len - 2] != 'x'
-		|| tmp[len - 3] != '.')
+	if (tmp[len] != 'm' || tmp[len - 1] != 'p' || \
+		tmp[len - 2] != 'x' || tmp[len - 3] != '.')
 	{
 		free(tmp);
 		return (0);
@@ -52,9 +52,20 @@ int	valid_texture(char *texture)
 int	get_textures2(char **texture, t_map *map)
 {
 	if (!ft_strncmp(texture[0], "WE", ft_strlen(texture[0])))
-		map->we = ft_strtrim(texture[1], "\n");
+	{
+		if (!map->we)
+			map->we = ft_strtrim(texture[1], "\n");
+	}
 	else if (!ft_strncmp(texture[0], "EA", ft_strlen(texture[0])))
-		map->ea = ft_strtrim(texture[1], "\n");
+	{
+		if (!map->ea)
+			map->ea = ft_strtrim(texture[1], "\n");
+	}
+	else if (!ft_strncmp(texture[0], "SO", ft_strlen(texture[0])))
+	{
+		if (!map->so)
+			map->so = ft_strtrim(texture[1], "\n");
+	}
 	else
 	{
 		map->f_c = ft_strtrim(texture[1], "\n");
@@ -71,16 +82,17 @@ int	get_textures(char *line, t_map *map)
 	texture = ft_split(line, ' ');
 	if (texture[0] && texture[1])
 	{
-		if ((tab2d_length(texture) == 3 && \
-			texture[2][0] != '\n') || !valid_side(texture[0]) || \
-			(ft_strncmp(texture[0], "F", ft_strlen(texture[0])) && \
-			ft_strncmp(texture[0], "C", ft_strlen(texture[0])) && \
+		if ((tab2d_length(texture) == 3 && texture[2][0] != '\n') ||
+			!valid_side(texture[0]) ||
+			(ft_strncmp(texture[0], "F", ft_strlen(texture[0])) &&
+			ft_strncmp(texture[0], "C", ft_strlen(texture[0])) &&
 			!valid_texture(texture[1])))
 			return (return_and_free(texture), 0);
 		if (!ft_strncmp(texture[0], "NO", ft_strlen(texture[0])))
-			map->no = ft_strtrim(texture[1], "\n");
-		else if (!ft_strncmp(texture[0], "SO", ft_strlen(texture[0])))
-			map->so = ft_strtrim(texture[1], "\n");
+		{
+			if (!map->no)
+				map->no = ft_strtrim(texture[1], "\n");
+		}
 		else if (!get_textures2(texture, map))
 			return (return_and_free(texture));
 	}

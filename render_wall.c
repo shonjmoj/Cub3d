@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 23:14:04 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 16:12:38 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:18:43 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	find_color(t_data *data, double wall, double offset_x, int from_top)
 		&& (data->alpha >= 0 && data->alpha < M_PI))
 	{
 		offset_y = (from_top) * (double)(data->map_element.height[0] / wall);
-		pixel_color = data->map_element.img_data[0][data->map_element.width[0] * \
+		pixel_color = \
+			data->map_element.img_data[0][data->map_element.width[0] * \
 			offset_y + (int)(offset_x * data->map_element.width[0])];
 		return (pixel_color);
 	}	
@@ -29,7 +30,8 @@ int	find_color(t_data *data, double wall, double offset_x, int from_top)
 		&& !(data->alpha >= 0 && data->alpha < M_PI))
 	{
 		offset_y = (from_top) * (double)(data->map_element.height[1] / wall);
-		pixel_color = data->map_element.img_data[1][data->map_element.width[1] * \
+		pixel_color = \
+			data->map_element.img_data[1][data->map_element.width[1] * \
 		offset_y + (int)(offset_x * data->map_element.width[1])];
 		return (pixel_color);
 	}
@@ -53,7 +55,8 @@ int	find_color_2(t_data *data, double wall, double offset_x, int from_top)
 		&& !(data->alpha >= M_PI / 2 && data->alpha < 1.5 * M_PI))
 	{
 		offset_y = (from_top) * (double)(data->map_element.height[3] / wall);
-		pixel_color = data->map_element.img_data[3][data->map_element.width[3] * \
+		pixel_color = \
+			data->map_element.img_data[3][data->map_element.width[3] * \
 			offset_y + (int)(offset_x * data->map_element.width[3])];
 		return (pixel_color);
 	}

@@ -6,13 +6,11 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 23:29:01 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 19:28:03 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:08:02 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 void	ft_draw_field_of_view(t_data *data)
 {
@@ -39,15 +37,6 @@ void	ft_draw_field_of_view(t_data *data)
 	data->player.rotationangle = rotation;
 }
 
-// void	ft_draw_player(t_image	img)
-// {
-// 	my_mlx_pixel_put(&img, 105, 105, 0x000000);
-// 	my_mlx_pixel_put(&img, 105 - 1, 105, 0x000000);
-// 	my_mlx_pixel_put(&img, 105, 105 - 1, 0x000000);
-// 	my_mlx_pixel_put(&img, 105 + 1, 105, 0x000000);
-// 	my_mlx_pixel_put(&img, 105, 105 + 1, 0x000000);
-// }
-
 int	ft_draw(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->mlx_win);
@@ -57,7 +46,8 @@ int	ft_draw(t_data *data)
 	ft_raycasting_calc(data);
 	ft_draw_field_of_view(data);
 	ft_rendering_wall(data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->map_element.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, \
+		data->map_element.img, 0, 0);
 	mlx_destroy_image(data->mlx, data->map_element.img);
 	return (0);
 }

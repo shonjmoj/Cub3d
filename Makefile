@@ -1,6 +1,8 @@
 NAME = cub3D
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+CC=gcc
+
+FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = cub3d.h
 		
@@ -22,7 +24,8 @@ SRC = config_parsing_utils2.c \
 		check_walls.c \
 		render.c \
 		render_wall.c \
-		get_textures_data.c
+		get_textures_data.c \
+		mouse_mouvement.c
 
 	
 

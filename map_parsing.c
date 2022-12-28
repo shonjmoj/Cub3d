@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 14:09:31 by elounejj          #+#    #+#             */
-/*   Updated: 2022/12/27 16:15:40 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:17:18 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	valid_parsing(t_map *map, int fd)
 		if (!line)
 			break ;
 		if (line[0] != '\n' || !completed_config(map))
-			get_textures(line, map);
+			if (!get_textures(line, map))
+				return (return_and_free(line), 0);
 		if (completed_config(map))
 		{
 			free(line);

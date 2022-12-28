@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_map_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youchenn <youchenn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 22:04:38 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/28 02:58:49 by youchenn         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:16:02 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ int	**ft_to_int(char **map, int length, int width)
 				n_map[i][j] = 1;
 			else
 				n_map[i][j] = ft_atoi_map(map[i][j]);
-			
 		}
-		while(j < width)
+		while (j < width)
 			n_map[i][j++] = 1;
 	}
 	n_map[i] = NULL;

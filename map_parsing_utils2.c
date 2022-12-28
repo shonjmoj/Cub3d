@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:33:47 by elounejj          #+#    #+#             */
-/*   Updated: 2022/12/08 19:56:27 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:16:56 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	is_border(size_t index, char *line)
 	return (1);
 }
 
-void set_player_pos(t_map *data)
+void	set_player_pos(t_map *data)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: elounejj <elounejj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 09:57:26 by youchenn          #+#    #+#             */
-/*   Updated: 2022/12/27 16:08:44 by elounejj         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:19:28 by elounejj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_draw_ceiling(t_data *data, double start, double len)
 {
 	int	color;
 
-	color = create_rgb(data->map_element.colors.c_red, data->map_element.colors.c_green, data->map_element.colors.c_blue);
+	color = create_rgb(data->map_element.colors.c_red, \
+		data->map_element.colors.c_green, data->map_element.colors.c_blue);
 	while (start <= len)
 	{
 		my_mlx_pixel_put(&data->img, data->id, start, color);
@@ -33,7 +34,8 @@ void	ft_draw_floor(t_data *data, double start, double len)
 {
 	int	color;
 
-	color = create_rgb(data->map_element.colors.f_red, data->map_element.colors.f_green, data->map_element.colors.f_blue);
+	color = create_rgb(data->map_element.colors.f_red, \
+		data->map_element.colors.f_green, data->map_element.colors.f_blue);
 	while (start <= len)
 	{
 		my_mlx_pixel_put(&data->img, data->id, start, color);
@@ -69,4 +71,3 @@ int	ft_rendering_wall(t_data *data)
 	}
 	return (data->id = 0, 0);
 }
-
